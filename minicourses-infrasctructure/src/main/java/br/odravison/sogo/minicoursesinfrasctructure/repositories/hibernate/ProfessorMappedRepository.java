@@ -1,4 +1,4 @@
-package br.odravison.sogo.minicoursesinfrasctructure.repositories;
+package br.odravison.sogo.minicoursesinfrasctructure.repositories.hibernate;
 
 import br.odravison.sogo.minicoursesinfrasctructure.entities.ProfessorMapped;
 import org.springframework.data.repository.CrudRepository;

@@ -19,6 +19,8 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-boot.starter.web.version>2.2.2.RELEASE</spring-boot.starter.web.version>
+        <jsonwebtoken.version>0.9.1</jsonwebtoken.version>
+        <spring.starter-secutiry.version>2.0.4.RELEASE</spring.starter-secutiry.version>
     </properties>
 
     <dependencies>
@@ -29,10 +31,21 @@
             <version>${project.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${spring.starter-secutiry.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jsonwebtoken.version}</version>
         </dependency>
 
         <dependency>
@@ -63,6 +76,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.13</version>
         </dependency>
 
         <dependency>

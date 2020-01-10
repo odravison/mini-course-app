@@ -1,3 +1,11 @@
+app:
+# TOKEN EXPIRATION
+  token:
+    secretkey: S0g0f0Rc3
+    expiration: 86400000 # One day (24 hours) in milliseconds
+  refreshtoken:
+    expiration: 172800000 # Two days (48 hours) in milliseconds
+
 server:
   port: 9000
 

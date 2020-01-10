@@ -1,11 +1,10 @@
-package br.odravison.sogo.minicoursesinfrasctructure.repositories;
+package br.odravison.sogo.minicoursesinfrasctructure.repositories.impl;
 
 import br.odravison.sogo.minicoursesdomain.domain.Professor;
 import br.odravison.sogo.minicoursesdomain.infrasctructure.ProfessorRepository;
 import br.odravison.sogo.minicoursesdomain.presentation.professor.ReadProfessorResponse;
-import br.odravison.sogo.minicoursesinfrasctructure.entities.ProfessorMapped;
+import br.odravison.sogo.minicoursesinfrasctructure.repositories.hibernate.ProfessorMappedRepository;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;

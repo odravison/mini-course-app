@@ -35,6 +35,12 @@ public class UserMapped extends BaseMappedEntity {
     @Column(name = "password")
     protected String password;
 
+    @Column(name = "id_role")
+    protected Long idRole;
+
+    @Column(name = "last_login_time")
+    protected Long lastLoginTime;
+
     @Column(name = "deleted")
     protected boolean deleted;
 
