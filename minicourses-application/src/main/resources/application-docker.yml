@@ -13,7 +13,7 @@ spring:
   application:
     name: api-server
   datasource:
-    url: jdbc:postgresql://localhost:5432/minicourses
+    url: jdbc:postgresql://postgresql_service:5432/minicourses
     username: sogo
     password: sogochallenge123
     driver-class-name: org.postgresql.Driver

@@ -58,13 +58,10 @@ CREATE TABLE public.user_account
     birthday timestamp without time zone,
     cpf character varying(255),
     CONSTRAINT user_account_pkey PRIMARY KEY (id),
-    CONSTRAINT user_account_cpf_UK UNIQUE (cpf)
-    ,
-    CONSTRAINT user_account_registration_UK UNIQUE (registration)
-    ,
-    CONSTRAINT user_account_email_uk UNIQUE (email)
-    ,
-    CONSTRAINT user_role_fk FOREIGN KEY (id_role)
+    CONSTRAINT user_account_cpf_UK UNIQUE (cpf),
+    CONSTRAINT user_account_registration_UK UNIQUE (registration),
+    CONSTRAINT user_account_email_uk UNIQUE (email),
+    CONSTRAINT user_account_role_fk FOREIGN KEY (id_role)
         REFERENCES public.role (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
