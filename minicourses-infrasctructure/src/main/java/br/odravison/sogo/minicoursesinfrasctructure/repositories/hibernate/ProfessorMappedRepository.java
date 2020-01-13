@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProfessorMappedRepository extends CrudRepository<ProfessorMapped, Long> {
+
+    boolean existsByEmailAndDeletedFalse(String email);
+
+    boolean existsByRegistrationAndDeletedFalse(String registration);
 }

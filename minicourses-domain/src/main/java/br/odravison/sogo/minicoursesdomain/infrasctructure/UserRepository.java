@@ -13,4 +13,6 @@ public interface UserRepository {
     Boolean isPasswordCorrect(Long id, String password);
 
     void updateLastLoginTimeByUserId(Long id, Long lastLoginTime);
+
+    boolean existsByEmail(String email);
 }

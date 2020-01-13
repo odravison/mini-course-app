@@ -45,4 +45,6 @@ public interface UserMappedRepository extends CrudRepository<UserMapped, Long> {
             "SET last_login_time = ?2 " +
             "WHERE id = ?1", nativeQuery = true)
     void updateLastLoginTimeByUserId(Long id, Long lastLoginTime);
+
+    boolean existsByEmailIgnoreCaseAndDeletedFalse(String email);
 }

@@ -1,7 +1,10 @@
-package br.odravison.sogo.minicoursesdomain.presentation.students;
+package br.odravison.sogo.minicoursesdomain.presentation.student;
+
+import lombok.Getter;
 
 import java.util.Date;
 
+@Getter
 public class ReadStudentResponse {
 
     private Long id;

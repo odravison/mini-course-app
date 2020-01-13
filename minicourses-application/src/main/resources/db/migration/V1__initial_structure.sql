@@ -1,11 +1,24 @@
 ----------------------------- CREATE SEQUENCES -------------------------
 CREATE SEQUENCE public.permission_seq
     INCREMENT 1
-    START 18
+    START 1
     MINVALUE 1
     MAXVALUE 2147483647
     CACHE 1;
 
+CREATE SEQUENCE public.mini_course_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+CREATE SEQUENCE public.user_account_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
 
 ----------------------------- CREATE TABLES -------------------------
 
@@ -15,10 +28,11 @@ CREATE TABLE public.role (
  description VARCHAR(250) NULL
 );
 
-CREATE TABLE public.permission (
-    id BIGINT NOT NULL DEFAULT nextval('permission_seq'),
-    name VARCHAR(50) NOT NULL,
-    description VARCHAR(250) NULL,
+CREATE TABLE public.permission
+(
+    id bigint NOT NULL DEFAULT nextval('permission_seq'),
+    description character varying(255),
+    name character varying(255),
     CONSTRAINT permission_pkey PRIMARY KEY (id)
 );
 
@@ -28,6 +42,47 @@ CREATE TABLE public.role_permission (
     PRIMARY KEY (id_role, id_permission),
     CONSTRAINT role_permission_role_FK FOREIGN KEY (id_role) REFERENCES public.role (id),
     CONSTRAINT role_permission_permission_FK FOREIGN KEY (id_permission) REFERENCES public.permission (id)
+);
+
+CREATE TABLE public.user_account
+(
+    type character varying(31) NOT NULL,
+    id bigint NOT NULL DEFAULT nextval('user_account_seq'),
+    deleted boolean,
+    email character varying(255) NOT NULL,
+    id_role bigint,
+    last_login_time bigint,
+    name character varying(255),
+    password character varying(255),
+    registration character varying(255),
+    birthday timestamp without time zone,
+    cpf character varying(255),
+    CONSTRAINT user_account_pkey PRIMARY KEY (id),
+    CONSTRAINT user_account_cpf_UK UNIQUE (cpf)
+    ,
+    CONSTRAINT user_account_registration_UK UNIQUE (registration)
+    ,
+    CONSTRAINT user_account_email_uk UNIQUE (email)
+    ,
+    CONSTRAINT user_role_fk FOREIGN KEY (id_role)
+        REFERENCES public.role (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+CREATE TABLE public.mini_course
+(
+    id bigint NOT NULL DEFAULT nextval('mini_course_seq'),
+    duration bigint,
+    name character varying(255),
+    start_date timestamp without time zone,
+    vacancies_number integer,
+    professor_owner_id bigint NOT NULL,
+    CONSTRAINT mini_course_pkey PRIMARY KEY (id),
+    CONSTRAINT professor_owner_FK FOREIGN KEY (professor_owner_id)
+        REFERENCES public.user_account (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
 );
 
 ALTER TABLE user_account
@@ -56,6 +111,29 @@ INSERT INTO public.role_permission (id_role, id_permission) VALUES (1, currval('
 
 INSERT INTO public.permission (name, description) VALUES ('delete-*', 'Delete any item.');
 INSERT INTO public.role_permission (id_role, id_permission) VALUES (1, currval('permission_seq'));
+
+------- INSERT ALL PERMISSION FOR PROFESSOR
+INSERT INTO public.permission (name, description) VALUES ('read-professors', 'Read all or one professor.');
+INSERT INTO public.role_permission (id_role, id_permission) VALUES (1, currval('permission_seq'));
+
+INSERT INTO public.permission (name, description) VALUES ('insert-minicourse*', 'Insert one minicourse.');
+INSERT INTO public.role_permission (id_role, id_permission) VALUES (1, currval('permission_seq'));
+
+------- INSERT ALL PERMISSION FOR STUDENT
+INSERT INTO public.permission (name, description) VALUES ('read-students*', 'Read all of one students.');
+INSERT INTO public.role_permission (id_role, id_permission) VALUES (1, currval('permission_seq'));
+
+INSERT INTO public.permission (name, description) VALUES ('subscribe-minicourse*', 'Subscribe in one minicourse.');
+INSERT INTO public.role_permission (id_role, id_permission) VALUES (1, currval('permission_seq'));
+
+------- Creating ADMIN USER --------
+INSERT INTO public.user_account(
+    type, deleted, email, id_role, last_login_time, name, password,
+                                registration, birthday, cpf)
+VALUES ('default', false, 'admin@admin',1, null, 'Administrator', '4f26aeafdb2367620a393c973eddbe8f8b846ebd',
+        null, null, null);
+
+
 
 
 

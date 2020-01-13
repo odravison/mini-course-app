@@ -9,12 +9,13 @@ public interface StudentRepository {
 
     List<Student> readStudents();
 
-    Long create(Student student);
+    Student create(Student student);
 
     Optional<Student> read(Long id);
 
-    void update(Student student);
+    boolean existsByEmail(String email);
 
-    void delete(Long id);
+    boolean existsByCpf(String cpf);
 
+    Optional<Student> findById(Long studentId);
 }

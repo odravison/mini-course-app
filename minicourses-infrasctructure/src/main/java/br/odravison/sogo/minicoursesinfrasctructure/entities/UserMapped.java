@@ -21,15 +21,15 @@ import javax.persistence.*;
 public class UserMapped extends BaseMappedEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-    @SequenceGenerator(name="user_seq", sequenceName = "user_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_account_seq")
+    @SequenceGenerator(name="user_account_seq", sequenceName = "user_account_seq")
     @Column(name = "id")
     protected Long id;
 
     @Column(name = "name")
     protected String name;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true, nullable = false)
     protected String email;
 
     @Column(name = "password")

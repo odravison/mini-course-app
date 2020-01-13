@@ -50,4 +50,9 @@ public class UserRepositoryImpl implements UserRepository {
     public void updateLastLoginTimeByUserId(Long id, Long lastLoginTime) {
         this.userMappedRepository.updateLastLoginTimeByUserId(id, lastLoginTime);
     }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return this.userMappedRepository.existsByEmailIgnoreCaseAndDeletedFalse(email);
+    }
 }

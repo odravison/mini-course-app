@@ -19,7 +19,7 @@ import java.util.List;
 @Where(clause = BaseMappedEntity.WHERE_DELETED_CLAUSE)
 public class ProfessorMapped extends UserMapped {
 
-    @Column(name = "registration")
+    @Column(name = "registration", unique = true)
     private String registration;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -31,7 +31,7 @@ public class ProfessorMapped extends UserMapped {
     }
 
     public ReadProfessorResponse buildReadProfessorResponse() {
-        return new ReadProfessorResponse(this.name, this.email, this.password, this.registration, this.phones);
+        return new ReadProfessorResponse(this.id, this.name, this.email, this.password, this.registration, this.phones);
     }
 
 }

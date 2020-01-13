@@ -1,14 +1,14 @@
 package br.odravison.sogo.minicoursesdomain.presentation.professor;
 
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ReadProfessorResponse {
 
     private Long id;
@@ -16,8 +16,6 @@ public class ReadProfessorResponse {
     private String name;
 
     private String email;
-
-    private String password;
 
     private String registration;
 
@@ -27,7 +25,6 @@ public class ReadProfessorResponse {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.registration = registration;
         this.phones = phones;
     }
@@ -35,7 +32,6 @@ public class ReadProfessorResponse {
     public ReadProfessorResponse(String name, String email, String password, String registration, List<String> phones) {
         this.name = name;
         this.email = email;
-        this.password = password;
         this.registration = registration;
         this.phones = phones;
     }

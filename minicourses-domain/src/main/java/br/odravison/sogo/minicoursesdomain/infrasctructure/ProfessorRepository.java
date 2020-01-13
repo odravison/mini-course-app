@@ -1,6 +1,6 @@
 package br.odravison.sogo.minicoursesdomain.infrasctructure;
 
-import br.odravison.sogo.minicoursesdomain.domain.Professor;
+import br.odravison.sogo.minicoursesdomain.presentation.professor.CreateProfessorRequest;
 import br.odravison.sogo.minicoursesdomain.presentation.professor.ReadProfessorResponse;
 
 import java.util.List;
@@ -10,11 +10,11 @@ public interface ProfessorRepository {
 
     List<ReadProfessorResponse> readProfessors();
 
-    Long create(Professor professor);
+    ReadProfessorResponse create(CreateProfessorRequest createProfessorRequest);
 
-    Optional<Professor> read(Long id);
+    Optional<ReadProfessorResponse> read(Long id);
 
-    void update(Professor professor);
+    boolean existsByEmail(String email);
 
-    void delete(Long id);
+    boolean existsByRegistration(String registration);
 }

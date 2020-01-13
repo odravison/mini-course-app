@@ -18,6 +18,8 @@ public class LoggedUserDTO {
     private String token;
     private String refreshToken;
     private List<String> permissions;
+    private boolean isProfessor = false;
+    private boolean isStudent = false;
 
     public LoggedUserDTO(Long id, String email) {
         this.id = id;
@@ -28,5 +30,7 @@ public class LoggedUserDTO {
         this.id = id;
         this.email = email;
         this.idRole = idRole;
+        this.isProfessor = (idRole == 2L);
+        this.isStudent = (idRole == 3L);
     }
 }

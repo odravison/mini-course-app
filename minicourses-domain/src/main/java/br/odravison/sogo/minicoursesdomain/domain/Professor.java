@@ -7,8 +7,10 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class Professor extends User {
 
+    public static final Long PROFESSOR_ROLE_ID = 2L;
     private String registration;
 
     private List<String> phones;
