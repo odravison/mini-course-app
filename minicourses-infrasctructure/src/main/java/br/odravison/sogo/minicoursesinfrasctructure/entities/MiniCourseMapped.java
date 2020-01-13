@@ -5,12 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,7 +27,7 @@ public class MiniCourseMapped extends BaseMappedEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mini_course_seq")
-    @SequenceGenerator(name="mini_course_seq", sequenceName = "mini_course_seq")
+    @SequenceGenerator(name="mini_course_seq", allocationSize = 1, sequenceName = "mini_course_seq")
     @Column(name = "id")
     private Long id;
 
@@ -39,8 +43,15 @@ public class MiniCourseMapped extends BaseMappedEntity{
     @Column(name = "vacancies_number")
     private Integer vacanciesNumber;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH})
+    @Fetch(FetchMode.SUBSELECT)
+    private List<StudentMapped> participants = new ArrayList<>();
+
     @ManyToOne(targetEntity = ProfessorMapped.class, optional = false)
     private ProfessorMapped professorOwner;
+
+    @Column(name = "deleted")
+    private Boolean deleted;
 
     public ReadMiniCourseResponse buildReadMiniCourseResponse(){
         return new ReadMiniCourseResponse(id, name, startDate, duration, vacanciesNumber, professorOwner.getId());

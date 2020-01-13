@@ -4,6 +4,8 @@ import br.odravison.sogo.minicoursesdomain.domain.MiniCourse;
 import br.odravison.sogo.minicoursesinfrasctructure.entities.MiniCourseMapped;
 import br.odravison.sogo.minicoursesinfrasctructure.utils.MapperUtils;
 
+import java.util.stream.Collectors;
+
 public class MiniCourseMapper {
 
     public static MiniCourse fromMiniCourseMapped(MiniCourseMapped mapped){
@@ -21,5 +23,10 @@ public class MiniCourseMapper {
         mapped.setName(miniCourse.getName());
         mapped.setStartDate(miniCourse.getStartDate());
         mapped.setVacanciesNumber(miniCourse.getVacanciesNumber());
+        mapped.setParticipants(miniCourse
+                .getParticipants()
+                .stream()
+                .map(StudentMapper::toStudentMapped).collect(Collectors.toList())
+        );
     }
 }

@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  postgresql_service:
+    image: postgres:10
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: 'sogochallenge123'
+      POSTGRES_USER: 'sogo'
+      POSTGRES_DB: 'minicourses'
+
+  minicourses_server_service:
+    build: ./minicourses-application
+    links:
+      - postgresql_service
+    ports:
+      - 9000:9000

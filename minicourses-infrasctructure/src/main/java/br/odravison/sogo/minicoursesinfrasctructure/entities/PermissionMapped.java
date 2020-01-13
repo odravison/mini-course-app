@@ -12,7 +12,7 @@ public class PermissionMapped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "permission_seq")
-    @SequenceGenerator(name="permission_seq", sequenceName = "permission_seq")
+    @SequenceGenerator(name="permission_seq", allocationSize = 1, sequenceName = "permission_seq")
     @Column(name = "id")
     private Long id;
 

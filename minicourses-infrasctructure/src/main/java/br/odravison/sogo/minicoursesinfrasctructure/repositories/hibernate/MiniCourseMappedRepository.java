@@ -4,7 +4,12 @@ import br.odravison.sogo.minicoursesinfrasctructure.entities.MiniCourseMapped;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
+import java.util.List;
+
 @Repository
 public interface MiniCourseMappedRepository extends CrudRepository<MiniCourseMapped, Long> {
+
+    Integer countByStartDate(Date startDate);
 
 }

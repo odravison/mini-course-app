@@ -4,6 +4,7 @@ public enum ValidationError {
 
     EMPTY_FIELD("EMPTY_FIELD", "Field cannot be empty"),
     INVALID_EMAIL("INVALID_EMAIL", "Invalid email format"),
+    START_DATE_NOT_AVAILABLE("START_DATE_NOT_AVAILABLE", "Mini Course start date not available."),
     INVALID_BIRTHDAY("INVALID_BIRTHDAY", "Invalid birthday date, cannot be after today"),
     EMAIL_ALREADY_IN_USE("EMAIL_ALREADY_IN_USE", "This email is already in use. Please choose another"),
     REGISTRATION_ALREADY_IN_USE("REGISTRATION_ALREADY_IN_USE", "This registration is already in use"),

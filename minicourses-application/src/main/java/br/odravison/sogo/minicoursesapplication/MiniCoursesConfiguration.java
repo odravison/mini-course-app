@@ -29,8 +29,9 @@ public class MiniCoursesConfiguration {
     }
 
     @Bean
-    public MiniCourseAPI miniCourseAPI(MiniCourseRepository miniCourseRepository) {
-        return new MiniCourseAPI(miniCourseRepository);
+    public MiniCourseAPI miniCourseAPI(MiniCourseRepository miniCourseRepository,
+                                       StudentRepository studentRepository) {
+        return new MiniCourseAPI(miniCourseRepository, studentRepository);
     }
 
     @Bean

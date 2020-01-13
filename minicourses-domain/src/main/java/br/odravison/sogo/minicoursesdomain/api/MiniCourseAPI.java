@@ -14,6 +14,7 @@ import br.odravison.sogo.minicoursesdomain.presentation.minicourse.ReadMiniCours
 import br.odravison.sogo.minicoursesdomain.presentation.minicourse.ReadMiniCoursesResponse;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.Optional;
 
 public class MiniCourseAPI {
@@ -31,7 +32,8 @@ public class MiniCourseAPI {
         return new ReadMiniCoursesResponse(this.miniCourseRepository.readMinniCourses());
     }
 
-    public ReadMiniCourseResponse createMiniCourse(CreateMiniCourseRequest createMiniCourseRequest) {
+    public ReadMiniCourseResponse createMiniCourse(CreateMiniCourseRequest createMiniCourseRequest) throws MiniCourseDomainException {
+        validateMiniCourseStartDate(createMiniCourseRequest.getStartDate());
         return this.miniCourseRepository.create(createMiniCourseRequest);
     }
 
@@ -65,6 +67,22 @@ public class MiniCourseAPI {
 
         miniCourse.addStudentToMiniCourse(studentOptional.get());
         this.miniCourseRepository.save(miniCourse);
+
+    }
+
+    private void validateMiniCourseStartDate(Date startDate) throws MiniCourseDomainException {
+
+        if (!this.miniCourseRepository.isAvailableStartDate(startDate)){
+            throw new MiniCourseDomainException(
+                    Collections.singletonList(
+                            new MiniCourseError(
+                                    ValidationError.START_DATE_NOT_AVAILABLE.code,
+                                    "startDate",
+                                    ValidationError.START_DATE_NOT_AVAILABLE.message
+                                    )
+                    )
+            );
+        }
 
     }
 }

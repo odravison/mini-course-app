@@ -12,6 +12,7 @@ import br.odravison.sogo.minicoursesinfrasctructure.repositories.hibernate.Profe
 import br.odravison.sogo.minicoursesinfrasctructure.utils.MapperUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,6 +81,11 @@ public class MiniCourseRepositoryImpl implements MiniCourseRepository {
         mapped = this.miniCourseMappedRepository.save(mapped);
 
         return MiniCourseMapper.fromMiniCourseMapped(mapped);
+    }
+
+    @Override
+    public boolean isAvailableStartDate(Date startDate) {
+        return this.miniCourseMappedRepository.countByStartDate(startDate) < 2;
     }
 
 

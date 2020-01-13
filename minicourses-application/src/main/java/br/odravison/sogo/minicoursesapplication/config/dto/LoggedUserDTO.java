@@ -1,5 +1,6 @@
 package br.odravison.sogo.minicoursesapplication.config.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +19,9 @@ public class LoggedUserDTO {
     private String token;
     private String refreshToken;
     private List<String> permissions;
+    @JsonIgnore
     private boolean isProfessor = false;
+    @JsonIgnore
     private boolean isStudent = false;
 
     public LoggedUserDTO(Long id, String email) {

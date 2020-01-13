@@ -22,7 +22,7 @@ public class UserMapped extends BaseMappedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_account_seq")
-    @SequenceGenerator(name="user_account_seq", sequenceName = "user_account_seq")
+    @SequenceGenerator(name="user_account_seq", allocationSize = 1, sequenceName = "user_account_seq")
     @Column(name = "id")
     protected Long id;
 

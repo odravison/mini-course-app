@@ -78,6 +78,7 @@ CREATE TABLE public.mini_course
     start_date timestamp without time zone,
     vacancies_number integer,
     professor_owner_id bigint NOT NULL,
+    deleted boolean DEFAULT false,
     CONSTRAINT mini_course_pkey PRIMARY KEY (id),
     CONSTRAINT professor_owner_FK FOREIGN KEY (professor_owner_id)
         REFERENCES public.user_account (id) MATCH SIMPLE
@@ -85,8 +86,29 @@ CREATE TABLE public.mini_course
         ON DELETE NO ACTION
 );
 
-ALTER TABLE user_account
-ADD CONSTRAINT user_role_FK FOREIGN KEY(id_role) REFERENCES public.role(id);
+CREATE TABLE public.mini_course_participants
+(
+    mini_course_id bigint NOT NULL,
+    participants_id bigint NOT NULL,
+    CONSTRAINT mini_course_participants_fk FOREIGN KEY (mini_course_id)
+        REFERENCES public.mini_course (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT student_participants_fk FOREIGN KEY (participants_id)
+        REFERENCES public.user_account (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+CREATE TABLE public.professor_phones
+(
+    professor_mapped_id bigint NOT NULL,
+    phones character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT professor_owner_fk FOREIGN KEY (professor_mapped_id)
+        REFERENCES public.user_account (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
 
 
     ---------- Inserts roles to the system ----------
