@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface MiniCourseMappedRepository extends CrudRepository<MiniCourseMapped, Long> {
 
-    Integer countByStartDate(Date startDate);
+    int countByStartDate(Date startDate);
 
 }

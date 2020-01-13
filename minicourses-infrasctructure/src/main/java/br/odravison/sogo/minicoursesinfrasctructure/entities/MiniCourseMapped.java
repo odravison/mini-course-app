@@ -51,7 +51,7 @@ public class MiniCourseMapped extends BaseMappedEntity{
     private ProfessorMapped professorOwner;
 
     @Column(name = "deleted")
-    private Boolean deleted;
+    private boolean deleted;
 
     public ReadMiniCourseResponse buildReadMiniCourseResponse(){
         return new ReadMiniCourseResponse(id, name, startDate, duration, vacanciesNumber, professorOwner.getId());

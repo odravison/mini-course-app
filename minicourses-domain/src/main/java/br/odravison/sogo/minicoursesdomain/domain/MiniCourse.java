@@ -26,6 +26,7 @@ public class MiniCourse {
     private Duration duration;
     private Integer vacanciesNumber;
     private List<Student> participants = new ArrayList<>();
+    protected Boolean deleted;
 
     private Professor professorOwner;
 

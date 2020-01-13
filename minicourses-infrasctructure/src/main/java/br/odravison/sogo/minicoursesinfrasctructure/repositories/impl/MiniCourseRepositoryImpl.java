@@ -71,7 +71,7 @@ public class MiniCourseRepositoryImpl implements MiniCourseRepository {
 
     @Override
     public boolean existsById(Long id) {
-        return this.miniCourseMappedRepository.existsById(id);
+        return this.miniCourseMappedRepository.findById(id).isPresent();
     }
 
     @Override

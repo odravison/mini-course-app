@@ -78,7 +78,7 @@ CREATE TABLE public.mini_course
     start_date timestamp without time zone,
     vacancies_number integer,
     professor_owner_id bigint NOT NULL,
-    deleted boolean DEFAULT false,
+    deleted boolean,
     CONSTRAINT mini_course_pkey PRIMARY KEY (id),
     CONSTRAINT professor_owner_FK FOREIGN KEY (professor_owner_id)
         REFERENCES public.user_account (id) MATCH SIMPLE

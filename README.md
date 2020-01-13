@@ -43,6 +43,8 @@ Nesse módulo é possível encontrar:
 Existem duas maneiras de executar esta aplicação.
 Para cada uma das maneiras, é necessário uma série de requisitos;
 
+OBS: Link para acessar a aplicação: `localhost:9000`
+
 #### Executando com o Docker
 
 **Requisitos**: 
@@ -51,6 +53,10 @@ Para cada uma das maneiras, é necessário uma série de requisitos;
 
 **Passos**:
 
+1. Faça o clone do repositório;
+2. No terminal, entre na pasta do projeto;
+3. Execute o comando: `docker-compose -f docker-compose.yml up`;
+4. Espere os containers startarem e use a aplicação normalmente;
 
 
 
@@ -63,6 +69,10 @@ Para cada uma das maneiras, é necessário uma série de requisitos;
 **Passos**:
 OBS: Alguns comandos utilizados, como: `./ ` funconam apenas em linux, se você utiliza outro SO, por favor, use um comando equivalente.
 
+Configurando banco de dados:
+1. crie um banco de dados chamado `minicourses` no seu PostgreSQL e configure-o para escutar na porta 5432;
+
+Subindo aplicação:
 1. Faça o clone do repositório;
 2. No terminal, entre na pasta do projeto;
 3. Execute o comando: `./mvnw package -DskipTests`;
