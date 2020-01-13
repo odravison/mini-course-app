@@ -55,7 +55,7 @@ OBS: Link para acessar a aplicação: `localhost:9000`
 
 1. Faça o clone do repositório;
 2. No terminal, entre na pasta do projeto;
-3. Execute o comando: `docker-compose -f docker-compose.yml up`;
+3. Execute o comando: `docker-compose -f docker-compose.yml up -d`;
 4. Espere os containers startarem e use a aplicação normalmente;
 
 
