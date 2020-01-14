@@ -78,3 +78,20 @@ Subindo aplicação:
 3. Execute o comando: `./mvnw package -DskipTests`;
 4. Ainda no terminal, entre na pasta do módulo `minicourse-application` e execute o comando `./mvnw spring-boot:run`;
 5. A aplicação deve rodar normalmente;
+
+#### Usando a aplicação
+
+Os endpoints existentes se resumem em três principais:
+- `/professors`
+- `/students`
+- `/mini-courses`
+
+O `POST` para esses endpoints com devidos `request body`cria suas respectivas entidades.
+O `GET` para os endpoints concatenados de `/all` traz uma lista de todos os registros daquela entidade.
+
+Para fazer login na aplicação, é preciso enviar um `POST` com um JSON no body com os campos `email` e `password`.
+Após feito o login você receberár um TOKEN e esse token deve ser usado para as demais chamadas aos ENDPOINTS. Ele deve ser enviado no `HEADER` das requisições subsequentes com a key `Authorization`.
+
+Existe um super usuário padrão com email `admin@admin` e password `master`. Apenas este usuário pode criar um professor.
+
+OBS: Uma das regras de negócio é de não haver mais de um login do mesmo usuário no sistema. Essa regra é contemplada através dos tokens, APENAS O ÚLTIMO TOKEN GERADO É VÁLIDO.
